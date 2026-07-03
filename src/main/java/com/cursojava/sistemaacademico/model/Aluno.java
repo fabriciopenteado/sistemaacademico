@@ -1,0 +1,74 @@
+package com.cursojava.sistemaacademico.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Aluno {
+    private Long id;
+    private String nome;
+    private String email;
+    private String matricula;
+    private int idade;
+    private List<Nota> notas = new ArrayList<>();
+
+    public Aluno(Long id, String nome, String email, String matricula, int idade) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.matricula = matricula;
+        this.idade = idade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public void adicionarNota(Nota nota) {
+        notas.add(nota);
+
+    }
+
+    public double getMedia() {
+        if (notas.isEmpty()) {
+            return 0.0;
+        }
+        double soma = 0.0;
+
+        for (Nota nota : notas) {
+            soma += nota.getValor();
+        }
+        return soma / notas.size();
+    }
+
+    public String getSituacao() {
+        if (notas.isEmpty()) {
+            return "sem notas";
+        }
+
+        if (getMedia() >= 7.0) {
+            return "Aprovado";
+        }
+
+        return "Reprovado";
+    }
+}
