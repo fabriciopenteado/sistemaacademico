@@ -31,12 +31,14 @@ public class AlunoController {
     }
 
     @GetMapping("/alunos/novo")
-    public String formularoAluno() {
+    public String formularioAluno() {
         return "aluno-form";
     }
 
     @PostMapping("/alunos")
-    public String cadastrarAluno(@RequestParam String nome, @RequestParam String email, @RequestParam String matricula,
+    public String cadastarAluno(@RequestParam String nome,
+            @RequestParam String email,
+            @RequestParam String matricula,
             @RequestParam int idade) {
         alunoService.cadastrarAluno(nome, email, matricula, idade);
 
@@ -50,15 +52,17 @@ public class AlunoController {
         if (aluno == null) {
             return "redirect:/alunos";
         }
+
         model.addAttribute("aluno", aluno);
         return "aluno-detalhes";
     }
 
     @GetMapping("/alunos/{id}/notas/nova")
-    public String formularioNota(@PathVariable Long id, Model model) {
+    public String formularioNota(@PathVariable Long id,
+            Model model) {
         Aluno aluno = alunoService.buscarPorId(id);
 
-        if (aluno == null) {
+        if(aluno == null) {
             return "redirect:/alunos";
         }
 
@@ -67,9 +71,12 @@ public class AlunoController {
     }
 
     @PostMapping("/alunos/{id}/notas")
-    public String cadastrarNota(@PathVariable Long id, @RequestParam String descricao, @RequestParam double valor) {
+    public String cadastrarNota(@PathVariable Long id,
+                                @RequestParam String descricao,
+                                @RequestParam double valor
+    ) {
         alunoService.cadastrarNota(id, descricao, valor);
+
         return "redirect:/alunos/" + id;
     }
-
 }

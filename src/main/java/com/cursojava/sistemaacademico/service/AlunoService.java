@@ -22,17 +22,16 @@ public class AlunoService {
 
     public Aluno buscarPorId(Long id) {
         return alunoRepository.buscarPorId(id);
-
     }
 
-    public Aluno cadastrarAluno(String nome, String email, String matricula, int idade) {
+    public Aluno cadastrarAluno(String nome, String email, String matricula, int idade){
         return alunoRepository.salvar(nome, email, matricula, idade);
     }
 
-    public void cadastrarNota(long alunoId, String descricao, double valor) {
+    public void cadastrarNota(Long alunoId, String descricao, double valor) {
         Aluno aluno = alunoRepository.buscarPorId(alunoId);
 
-        if (aluno != null) {
+        if(aluno != null) {
             Nota nota = new Nota(descricao, valor);
             aluno.adicionarNota(nota);
         }

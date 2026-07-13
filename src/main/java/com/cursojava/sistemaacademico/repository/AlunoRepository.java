@@ -27,14 +27,11 @@ public class AlunoRepository {
     }
 
     public Aluno salvar(String nome, String email, String matricula, int idade) {
-
         Aluno aluno = new Aluno(proximoId, nome, email, matricula, idade);
 
         alunos.add(aluno);
         proximoId++;
 
         return aluno;
-
     }
-
 }

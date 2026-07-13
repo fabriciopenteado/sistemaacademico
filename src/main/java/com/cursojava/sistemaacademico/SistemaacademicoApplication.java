@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SistemaacademicoApplication {
-
+public class SistemaAcademicoApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaacademicoApplication.class, args);
+		SpringApplication.run(SistemaAcademicoApplication.class, args);
 	}
 
 }

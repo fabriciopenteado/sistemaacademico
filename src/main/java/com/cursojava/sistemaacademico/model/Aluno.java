@@ -11,7 +11,8 @@ public class Aluno {
     private int idade;
     private List<Nota> notas = new ArrayList<>();
 
-    public Aluno(Long id, String nome, String email, String matricula, int idade) {
+    public Aluno(Long id, String nome, String email,
+            String matricula, int idade) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -23,20 +24,20 @@ public class Aluno {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public int getIdade() {
+        return idade;
     }
 
     public String getMatricula() {
         return matricula;
     }
 
-    public int getIdade() {
-        return idade;
+    public String getNome() {
+        return nome;
     }
 
     public List<Nota> getNotas() {
@@ -45,24 +46,25 @@ public class Aluno {
 
     public void adicionarNota(Nota nota) {
         notas.add(nota);
-
     }
 
     public double getMedia() {
         if (notas.isEmpty()) {
             return 0.0;
         }
+
         double soma = 0.0;
 
         for (Nota nota : notas) {
             soma += nota.getValor();
         }
+
         return soma / notas.size();
     }
 
     public String getSituacao() {
-        if (notas.isEmpty()) {
-            return "sem notas";
+        if(notas.isEmpty()) {
+            return "Sem notas";
         }
 
         if (getMedia() >= 7.0) {
