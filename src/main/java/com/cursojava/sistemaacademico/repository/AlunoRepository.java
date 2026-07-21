@@ -15,23 +15,64 @@ public class AlunoRepository {
     public List<Aluno> listarTodos() {
         return alunos;
     }
-
+    
     public Aluno buscarPorId(Long id) {
         for (Aluno aluno : alunos) {
-            if (aluno.getId() == id) {
+            if (aluno.getId().equals(id)) {
                 return aluno;
             }
         }
-
+        
         return null;
     }
+    
+    public List<Aluno> buscarPorNome(String nome) {
+        List<Aluno> encontrados = new ArrayList<>();
+        String nomeProcurado = nome.toLowerCase();
 
+        for (Aluno aluno : alunos) {
+            String nomeDoAluno = aluno.getNome().toLowerCase();
+
+            if(nomeDoAluno.contains(nomeProcurado)) {
+                encontrados.add(aluno);                
+            }
+        }
+
+        return encontrados;
+    }
+    
     public Aluno salvar(String nome, String email, String matricula, int idade) {
         Aluno aluno = new Aluno(proximoId, nome, email, matricula, idade);
 
         alunos.add(aluno);
         proximoId++;
+        
+        return aluno;
+    }
+    
+    public Aluno atualizar(Long id, String nome, String email, String matricula, int idade) {
+        Aluno aluno = buscarPorId(id);
+
+        if (aluno == null) {
+            return null;
+        }
+
+        aluno.SetNome(nome);
+        aluno.setEmail(email);
+        aluno.setMatricula(matricula);
+        aluno.setIdade(idade);
 
         return aluno;
     }
+
+    public boolean excluir(long id) {
+        Aluno aluno = buscarPorId(id);
+    
+        if (aluno == null) {
+            return false;
+        }
+        return alunos.remove(aluno);
+    }
+
+
 }
